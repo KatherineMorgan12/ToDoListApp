@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List Application</title>
+    <link rel="stylesheet" href="https://unpkg.com/js-datepicker/dist/datepicker.min.css">
 </head>
 <body>
     <h2>The To Do List</h2>
@@ -19,7 +20,16 @@
     <span>*</span>
     <br>
 
+    <input type="checkbox">
+    <label for="is-complete">Complete?</label>
+    <br>
 
-
+    <input type="button" value="Add Item">
+    
+    <script src="https://unpkg.com/js-datepicker"></script>
+    <script>
+        const picker = datepicker("#due-date");
+        picker.setMin(new Date());  // Set to today's date
+    </script>
 </body>
 </html>
