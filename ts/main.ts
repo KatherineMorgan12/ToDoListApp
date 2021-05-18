@@ -116,5 +116,3 @@ function markAsComplete(){
     let completedItems = document.getElementById("completed-items");
     completedItems.appendChild(itemDiv);
 }
-
-// Store ToDoItems in web storage

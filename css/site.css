@@ -1,12 +1,18 @@
 .to-do{
     box-sizing: border-box;
-    width: 23%;
+    width: 20%;
     background-color: rgb(197, 128, 197);
     text-align: center;
     padding: .5em;
     margin: 1em;
     border-radius: .8em;
     cursor: pointer;
+}
+#completed-items, #incomplete-items{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 #completed-items{
