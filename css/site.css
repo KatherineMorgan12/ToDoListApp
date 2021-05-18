@@ -6,13 +6,16 @@
     padding: .5em;
     margin: 1em;
     border-radius: .8em;
+    cursor: pointer;
 }
 
-/*
-#incomplete-items{
-    float: left;
+#completed-items{
+    border: 2px solid black;
 }
-*/
+
+#incomplete-items{
+    border: 2px solid black;
+}
 
 .to-do h4{
     margin: 0px;
@@ -25,4 +28,5 @@
 .is-complete{
     opacity: 45%;
     background-color: rgb(138, 197, 138);
+    /* text-decoration: line-through; */
 }

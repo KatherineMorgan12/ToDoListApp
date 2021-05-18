@@ -73,22 +73,20 @@ function displayToDoItem(item:ToDoItem):void{
 
     // Div for display, give all display divs "todo" class
     let itemDiv = document.createElement("div");
+    itemDiv.onclick = markAsComplete;
     itemDiv.classList.add("to-do");
 
     // If ToDoItem is complete, add class "is-complete" to new div for CSS
     if(item.isComplete){
-        itemDiv.classList.add("is-complete");
-        
+        itemDiv.classList.add("is-complete");  
     }
-
 
     itemDiv.appendChild(itemTitle);
     itemDiv.appendChild(itemDate);
 
-
     // If ToDoItem is complete, add to completed items list
     if(item.isComplete){
-        let completedItems = document.getElementById("complete-items");
+        let completedItems = document.getElementById("completed-items");
         completedItems.appendChild(itemDiv);
     }
     else{
@@ -97,6 +95,12 @@ function displayToDoItem(item:ToDoItem):void{
     }
 }
 
+function markAsComplete(){
+    let itemDiv = <HTMLElement>this;
+    itemDiv.classList.add("is-complete");
 
-// Allow user to mark ToDoItem as completed
+    let completedItems = document.getElementById("completed-items");
+    completedItems.appendChild(itemDiv);
+}
+
 // Store ToDoItems in web storage
