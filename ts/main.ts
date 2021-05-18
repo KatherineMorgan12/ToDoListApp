@@ -12,6 +12,7 @@ class ToDoItem{
     //}
 }
 
+// Example: instantiation and population;
 //let item = new ToDoItem();
 //item.title = "Testing";
 //item.dueDate = new Date(2020, 6, 1);
@@ -61,11 +62,14 @@ function getToDoItem():ToDoItem{
  */
 function displayToDoItem(item:ToDoItem):void{
     // Create elements and populate with info
-    let itemTitle = document.createElement("h3");
+    // Heading with ToDo item title
+    let itemTitle = document.createElement("h4");
     itemTitle.innerText = item.title;
 
+    // Paragraph with ToDo item due date
     let itemDate = document.createElement("p");
-    itemDate.innerText = item.dueDate.toDateString();
+    let dueDate = new Date(item.dueDate.toString());
+    itemDate.innerText = dueDate.toDateString();
 
     // Div for display
     let itemDiv = document.createElement("div");
