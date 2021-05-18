@@ -1,0 +1,28 @@
+.to-do{
+    box-sizing: border-box;
+    width: 23%;
+    background-color: rgb(197, 128, 197);
+    text-align: center;
+    padding: .5em;
+    margin: 1em;
+    border-radius: .8em;
+}
+
+/*
+#incomplete-items{
+    float: left;
+}
+*/
+
+.to-do h4{
+    margin: 0px;
+}
+
+.to-do p{
+    margin: 0px;
+}
+
+.is-complete{
+    opacity: 45%;
+    background-color: rgb(138, 197, 138);
+}

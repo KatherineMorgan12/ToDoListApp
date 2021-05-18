@@ -71,12 +71,14 @@ function displayToDoItem(item:ToDoItem):void{
     let dueDate = new Date(item.dueDate.toString());
     itemDate.innerText = dueDate.toDateString();
 
-    // Div for display
+    // Div for display, give all display divs "todo" class
     let itemDiv = document.createElement("div");
+    itemDiv.classList.add("to-do");
 
-    // If ToDoItem is complete, add class to new div for CSS
+    // If ToDoItem is complete, add class "is-complete" to new div for CSS
     if(item.isComplete){
-        itemDate.classList.add("is-complete");
+        itemDiv.classList.add("is-complete");
+        
     }
 
 
