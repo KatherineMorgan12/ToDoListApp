@@ -30,3 +30,16 @@
     background-color: rgb(138, 197, 138);
     /* text-decoration: line-through; */
 }
+
+body{
+    margin: 1em;
+    
+}
+
+input{
+    margin: 1em;
+}
+
+#addBtn{
+    padding: 1em;
+}
