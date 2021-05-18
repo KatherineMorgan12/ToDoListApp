@@ -21,12 +21,21 @@ class ToDoItem{
 window.onload = function() {
     let addItem = document.getElementById("addBtn");
     addItem.onclick = main;
+
+    // Load saved item(s)
+    loadSavedItem();
+}
+
+function loadSavedItem(){
+    let item = getToDo();
+    displayToDoItem(item);
 }
 
 function main(){
     if(isValid()){
         let item = getToDoItem();
         displayToDoItem(item);
+        saveToDo(item);
     }
 }
 
@@ -115,4 +124,26 @@ function markAsComplete(){
 
     let completedItems = document.getElementById("completed-items");
     completedItems.appendChild(itemDiv);
+}
+
+// Function to store single ToDo Item
+function saveToDo(item:ToDoItem):void{
+    // Convert object to string
+    let itemString = JSON.stringify(item);
+
+    // Save string as web storage
+    localStorage.setItem(todokey, itemString);
+}
+
+const todokey = "todo";
+
+// Function to retrieve single ToDo Item
+/**
+ * Gets stored ToDo item or return null if none is found.
+ * @returns stored ToDo item or null
+ */
+function getToDo():ToDoItem{
+    let itemString = localStorage.getItem(todokey);
+    let item:ToDoItem = JSON.parse(itemString);
+    return item;
 }

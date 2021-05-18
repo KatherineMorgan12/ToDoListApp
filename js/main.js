@@ -8,11 +8,17 @@ var ToDoItem = (function () {
 window.onload = function () {
     var addItem = document.getElementById("addBtn");
     addItem.onclick = main;
+    loadSavedItem();
 };
+function loadSavedItem() {
+    var item = getToDo();
+    displayToDoItem(item);
+}
 function main() {
     if (isValid()) {
         var item = getToDoItem();
         displayToDoItem(item);
+        saveToDo(item);
     }
 }
 function isValid() {
@@ -66,4 +72,14 @@ function markAsComplete() {
     itemDiv.classList.add("is-complete");
     var completedItems = document.getElementById("completed-items");
     completedItems.appendChild(itemDiv);
+}
+function saveToDo(item) {
+    var itemString = JSON.stringify(item);
+    localStorage.setItem(todokey, itemString);
+}
+var todokey = "todo";
+function getToDo() {
+    var itemString = localStorage.getItem(todokey);
+    var item = JSON.parse(itemString);
+    return item;
 }

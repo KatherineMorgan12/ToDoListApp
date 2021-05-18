@@ -8,6 +8,7 @@
     border-radius: .8em;
     cursor: pointer;
 }
+
 #completed-items, #incomplete-items{
     display: flex;
     flex-direction: row;
