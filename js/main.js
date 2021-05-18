@@ -16,6 +16,16 @@ function main() {
     }
 }
 function isValid() {
+    var titleInput = document.getElementById("title").value;
+    var dueDateInput = document.getElementById("due-date").value;
+    if (titleInput.trim() == "") {
+        alert("You don't have anything to do? Dang.");
+        return false;
+    }
+    if (dueDateInput.trim() == "") {
+        alert("Set yourself a nice goal date of completion.");
+        return false;
+    }
     return true;
 }
 function getToDoItem() {

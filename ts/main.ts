@@ -34,6 +34,20 @@ function main(){
  * Check that form data is valid
  */
 function isValid():boolean{
+    let titleInput = (<HTMLInputElement>document.getElementById("title")).value;
+    let dueDateInput = (<HTMLInputElement>document.getElementById("due-date")).value;
+    
+    if (titleInput.trim() == ""){
+        alert("You don't have anything to do? Dang.");
+        return false;
+    } 
+    if (dueDateInput.trim() == ""){
+        alert("Set yourself a nice goal date of completion.");
+        return false;
+    } 
+
+
+
     return true;
 }
  /**
