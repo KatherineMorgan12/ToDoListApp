@@ -8,11 +8,13 @@ var ToDoItem = (function () {
 window.onload = function () {
     var addItem = document.getElementById("addBtn");
     addItem.onclick = main;
-    loadSavedItem();
+    loadSavedItems();
 };
-function loadSavedItem() {
-    var item = getToDo();
-    displayToDoItem(item);
+function loadSavedItems() {
+    var itemArray = getToDoItems();
+    for (var i = 0; i < itemArray.length; i++) {
+        displayToDoItem(itemArray[i]);
+    }
 }
 function main() {
     if (isValid()) {
@@ -51,7 +53,7 @@ function displayToDoItem(item) {
     var dueDate = new Date(item.dueDate.toString());
     itemDate.innerText = dueDate.toDateString();
     var itemDiv = document.createElement("div");
-    itemDiv.onclick = markAsComplete;
+    itemDiv.onclick = changeCompletionStatus;
     itemDiv.classList.add("to-do");
     if (item.isComplete) {
         itemDiv.classList.add("is-complete");
@@ -67,18 +69,33 @@ function displayToDoItem(item) {
         incompletedItems.appendChild(itemDiv);
     }
 }
-function markAsComplete() {
+function changeCompletionStatus() {
     var itemDiv = this;
-    itemDiv.classList.add("is-complete");
+    if (!itemDiv.classList.contains("is-complete")) {
+        itemDiv.classList.add("is-complete");
+    }
+    else {
+        var result = confirm("Are you sure you want to erase this task?");
+        if (result) {
+            itemDiv.remove();
+        }
+        var erasedTasks = document.getElementById("erased");
+        erasedTasks.innerHTML = "";
+    }
     var completedItems = document.getElementById("completed-items");
     completedItems.appendChild(itemDiv);
 }
 function saveToDo(item) {
-    var itemString = JSON.stringify(item);
-    localStorage.setItem(todokey, itemString);
+    var currItems = getToDoItems();
+    if (currItems == null) {
+        currItems = new Array();
+    }
+    currItems.push(item);
+    var currItemsString = JSON.stringify(currItems);
+    localStorage.setItem(todokey, currItemsString);
 }
 var todokey = "todo";
-function getToDo() {
+function getToDoItems() {
     var itemString = localStorage.getItem(todokey);
     var item = JSON.parse(itemString);
     return item;

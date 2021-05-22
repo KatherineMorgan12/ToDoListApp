@@ -23,21 +23,28 @@ window.onload = function() {
     addItem.onclick = main;
 
     // Load saved item(s)
-    loadSavedItem();
+    loadSavedItems();
 }
 
-function loadSavedItem(){
-    let item = getToDo();
-    displayToDoItem(item);
+function loadSavedItems(){
+    let itemArray = getToDoItems();
+    for (let i = 0; i < itemArray.length; i++){
+        displayToDoItem(itemArray[i]);  
+    }
+    
 }
+
+
 
 function main(){
+
     if(isValid()){
         let item = getToDoItem();
         displayToDoItem(item);
         saveToDo(item);
     }
 }
+
 
 /**
  * Check that form data is valid
@@ -96,7 +103,7 @@ function displayToDoItem(item:ToDoItem):void{
 
     // Div for display, give all display divs "todo" class
     let itemDiv = document.createElement("div");
-    itemDiv.onclick = markAsComplete;
+    itemDiv.onclick = changeCompletionStatus;
     itemDiv.classList.add("to-do");
 
     // If ToDoItem is complete, add class "is-complete" to new div for CSS
@@ -118,9 +125,23 @@ function displayToDoItem(item:ToDoItem):void{
     }
 }
 
-function markAsComplete(){
+
+
+function changeCompletionStatus(){
     let itemDiv = <HTMLElement>this;
-    itemDiv.classList.add("is-complete");
+    if (!itemDiv.classList.contains("is-complete")){
+        itemDiv.classList.add("is-complete");
+    } else {
+        let result = confirm("Are you sure you want to erase this task?");
+        if (result) {
+           // itemDiv.classList.replace("is-complete", "erased");
+           //itemDiv.id = "erased"; 
+           itemDiv.remove();   
+        }
+        var erasedTasks = document.getElementById("erased");
+        erasedTasks.innerHTML = "";
+    }
+    
 
     let completedItems = document.getElementById("completed-items");
     completedItems.appendChild(itemDiv);
@@ -128,22 +149,33 @@ function markAsComplete(){
 
 // Function to store single ToDo Item
 function saveToDo(item:ToDoItem):void{
+    // Get current ToDo items first
+    let currItems = getToDoItems();
+    if (currItems == null){ // no items found
+        currItems = new Array();
+    }
+    currItems.push(item); // add new item to current item list
+
     // Convert object to string
-    let itemString = JSON.stringify(item);
+    let currItemsString = JSON.stringify(currItems);
 
     // Save string as web storage
-    localStorage.setItem(todokey, itemString);
+    localStorage.setItem(todokey, currItemsString);
+    
+    
+    
+    
 }
 
 const todokey = "todo";
 
 // Function to retrieve single ToDo Item
 /**
- * Gets stored ToDo item or return null if none is found.
+ * Gets stored ToDo items or return null if none are found.
  * @returns stored ToDo item or null
  */
-function getToDo():ToDoItem{
+function getToDoItems():ToDoItem[]{
     let itemString = localStorage.getItem(todokey);
-    let item:ToDoItem = JSON.parse(itemString);
+    let item:ToDoItem[] = JSON.parse(itemString);
     return item;
 }
