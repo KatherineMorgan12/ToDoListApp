@@ -9,30 +9,31 @@
     <link rel="stylesheet" href="https://unpkg.com/js-datepicker/dist/datepicker.min.css">
 </head>
 <body>
-    <h2>My To Do List</h2>
+    <div id="input-section">
+        <h2>What do I need to do?</h2>
 
-    
-    <label for="title">Do this: </label>
-    <input id ="title" type="text">
-    <span>*</span>
-    <br>
+        
+        <label for="title">This: </label>
+        <input id ="title" type="text">
+        <span>*</span>
+        <br>
 
-    <label for="due-date">By: </label>
-    <input id="due-date" readOnly ="true" type="text">
-    <span>*</span>
-    <br>
- <!--
-    <input id="is-complete" type="checkbox">
-    <label for="is-complete">Complete?</label>
-    <br>
--->
-    <input id="addBtn" type="button" value="I promise to do this thing.">
-
-    <h3>To Do</h3>
+        <label for="due-date">By: </label>
+        <input id="due-date" readOnly ="true" type="text">
+        <span>*</span>
+        <br>
+    <!--
+        <input id="is-complete" type="checkbox">
+        <label for="is-complete">Complete?</label>
+        <br>
+    -->
+        <input id="addBtn" type="button" value="I promise to do this thing.">
+    </div>
+    <h3 class="task-headings">To Do</h3>
         <div id="incomplete-items"></div>
 
 
-    <h3>Not To Do Anymore</h3>
+    <h3 class="task-headings">Not To Do Anymore</h3>
         <div id="completed-items"></div>
 
     

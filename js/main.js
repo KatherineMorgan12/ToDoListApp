@@ -6,6 +6,7 @@ var ToDoItem = (function () {
     return ToDoItem;
 }());
 window.onload = function () {
+    localStorage.clear();
     var addItem = document.getElementById("addBtn");
     addItem.onclick = main;
     loadSavedItems();
@@ -42,8 +43,6 @@ function getToDoItem() {
     toDo.title = titleInput.value;
     var dueDateInput = document.getElementById("due-date");
     toDo.dueDate = new Date(dueDateInput.value);
-    var isComplete = document.getElementById("is-complete");
-    toDo.isComplete = isComplete.checked;
     return toDo;
 }
 function displayToDoItem(item) {
@@ -77,6 +76,7 @@ function changeCompletionStatus() {
     else {
         var result = confirm("Are you sure you want to erase this task?");
         if (result) {
+            itemDiv.classList.replace("is-complete", "erased");
             itemDiv.remove();
         }
         var erasedTasks = document.getElementById("erased");
